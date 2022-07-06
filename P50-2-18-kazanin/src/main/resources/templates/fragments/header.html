@@ -1,0 +1,18 @@
+<div th:fragment="header">
+    <div class="container">
+        <header class="p-4 bg-dark text-white">
+            <ul class="nav nav-pills">
+
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-white" aria-current="page">Домашняя</a></li>
+                <li class="nav-item"><a href="/vidSovet/" class="nav-link px-2 text-white">Советы по уходу</a></li>
+                <li class="nav-item"><a href="/news/" class="nav-link px-2 text-white">Новости</a></li>
+                <li class="nav-item"><a href="/tovari/" class="nav-link px-2 text-white">Товары</a></li>
+                <li class="nav-item"><a href="/chart/" class="nav-link px-2 text-white">Корзина</a></li>
+
+                <form class="nav-item" th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-primary">Выйти</button>
+                </form>
+            </ul>
+        </header>
+    </div>
+</div>

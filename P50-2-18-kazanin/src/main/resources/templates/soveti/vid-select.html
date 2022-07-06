@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Поиск информации</title>
+    <div th:insert="fragments/bg" ></div>
+</head>
+<body>
+<div th:insert="fragments/header :: header" ></div>
+<!--ОСНОВНОЙ КОНТЕНТ-->
+<font color="white">
+<div style="display: flex">
+    <div style="margin: 100px"></div>
+    <div>
+        <table
+                border="2"
+                bgcolor="#212626"
+                cellpadding="10"
+                border-radius = "10px"
+                style="width:100%">
+            <tr>
+                <th>
+                    <h1>Поиск информации в нашей библиотеке</h1>
+                    <h3>Выберете в меню интересующую вас породу и подтвердите выбор</h3>
+                </th>
+            </tr>
+        </table>
+        <table
+                border="2"
+                bgcolor="#282429"
+                cellpadding="10"
+                style="width:100%; border-radius:5px;">
+            <tr style="margin: auto">
+                <td style="margin: auto"
+                        th:align="top"
+                        rowspan="2">
+                    <h3>Меню</h3>
+                    <p style="text-indent:20px">
+                        Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
+                    </p>
+
+                    <form method="post">
+                        <div style="display: flex">
+                            <select name="vidselect" style="font-size: 20px">
+                                <div th:each="el : ${allvids}">
+                                    <option  th:text="${el.name}" th:value="${el.id}"></option>
+                                </div>
+                            </select>
+                            <button style="margin-left: 10px" class="btn btn-primary" type="submit">выбрать</button>
+                            <div style="margin-left: 10px"  th:if="${isAdmin}"><a class="btn btn-warning" th:href="'/vidSovet/add/'">добавить вид</a></div>
+
+                            <div style="margin-left: 10px"  th:if="${isAdmin}"><a class="btn btn-warning" th:href="'/poroda/add/'">добавить породу</a></div>
+                        </div>
+
+                    </form>
+
+                    <div th:if="${isPost}">
+                        <div th:each="el : ${porodas}">
+                            <p>
+                                <a th:text="${el.name}" th:href="'/animal/'+${el.id}"><span style="margin-left:5px;"></span></a></a>
+                            </p>
+                        </div>
+                    </div>
+
+                </td>
+                <td bgcolor="#28252A">
+                    <h2 th:align="center" >Зачем?</h2>
+                    <!--Начинаем абзац с красной строки-->
+                    <p style="text-indent:0px">
+                        В этом разделе сайта вы можете найти информацию об интересующих вас животных </p>
+                        Кому это может быть полезно?
+                    <br>
+                    -Тем кто только желает приобрести питомца
+                    <br>
+                    -Кто столкнулся с неожиданными препятствиями
+                    <br>
+                    -...
+                    <br>
+                    -...
+
+                </td>
+            </tr>
+            <tr>
+                <td
+
+                        bgcolor="#28252A"
+                        align="center">
+                    <h3>Общая информация</h3>
+                    <p>Текст общей информации или реклама</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="margin: 100px"></div>
+</div>
+</font>
+    <div th:insert="fragments/footer :: footer" ></div>
+</body>
+</html>

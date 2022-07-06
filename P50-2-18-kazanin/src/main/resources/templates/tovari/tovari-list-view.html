@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Товары</title>
+    <div th:insert="fragments/bg"></div>
+</head>
+<body>
+<div id="bg"></div>
+<div th:insert="fragments/header :: header" ></div>
+<div align="center">
+    <font color="white">
+        <h4>Животное</h4>
+    </font>
+    <form method="post" style="vertical-align: center">
+        <div style="display: inline-block">
+            <select name="vid" style="font-size: 20px">
+                <div th:each="el : ${allvids}">
+                    <option  th:text="${el.name}" th:value="${el.id}"></option>
+                </div>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-info">Поиск</button>
+        <a class="btn btn-info" href="/tovari/" style="margin: 0px">Все товары</a>
+        <div th:if="${isAdmin}" align="center">
+            <a th:href="'/tovari/add'" class="btn btn-primary my-2">Добавить товар</a>
+        </div>
+    </form>
+    <br>
+</div>
+<div class="album py-5 bg-light" >
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col" th:each="el : ${alltovari}" >
+                <div class="card shadow-sm">
+                    <img class="rounded-3" height="300px" th:src = "${el.imageTovar.getUrl()}">
+                    <rect width="100%" height="100%" fill="#55595c"></rect>
+                    <h3 style="margin: 10px" th:text="${el.name}" x="50%" y="50%" fill="#eceeef" dy=".3em"></h3>
+                    </svg>
+                    <div class="card-body">
+                        <p class="card-text"></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a th:href="'/tovari/view/'+ ${el.id}" type="button" class="btn btn-sm btn-outline-secondary">Посмотреть</a>
+                            </div>
+                            <small align="right" th:text="${'Цена - ' + el.cost}" style="font-size: 20px" class="text-muted"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:insert="fragments/footer :: footer" ></div>
+</body>
+</html>

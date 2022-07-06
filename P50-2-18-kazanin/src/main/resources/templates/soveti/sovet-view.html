@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="../styles/mystyle.css" th:href="@{/styles/mystyle.css}" rel="stylesheet" />
+    <title th:text="${sovet.header}"></title>
+    <div th:insert="fragments/bg" ></div>
+</head>
+<div th:insert="fragments/header :: header" ></div>
+<body >
+<div style="display: flex">
+    <div style="margin: 50px"></div>
+    <div  class="bg-light p-5 rounded">
+        <img class="rounded-3" th:src = "${sovet.imageSovet.getUrl()}" height="300" width="auto">
+        <h1 th:text="${sovet.header}"></h1>
+        <p class="lead" th:text="${sovet.text}"></p>
+        <a class="btn btn-lg btn-primary" th:href="'/animal/'+${sovet.poroda.id}" role="button">Назад</a>
+    </div>
+    <div style="margin: 50px"></div>
+</div>
+
+</body>
+
+<div th:insert="fragments/footer" ></div>
+</html>

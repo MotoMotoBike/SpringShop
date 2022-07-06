@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить породу</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <div th:insert="fragments/bg" ></div>
+</head>
+<body>
+<div class="margin" style="margin-left: 100px" th:insert="fragments/header :: header" ></div>
+<div align="center">
+
+    <h1 align="center">Введите название новой породы </h1>
+    <form method="post">
+        <input type="text" name="name" style="font-size: 20px" placeholder="Порода">
+        <select name="vidselect" style="font-size: 20px">
+            <div th:each="el : ${allvids}">
+                <option  th:text="${el.name}" th:value="${el.id}"></option>
+            </div>
+        </select>
+        <button class="btn btn-primary" style="font-size: 20px" type="submit">Добавить</button>
+    </form>
+</div>
+
+
+<div th:insert="fragments/footer" ></div>
+</body>
+</html>

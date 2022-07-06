@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="/static/build/css/main.css?16352560021430646" type="text/css" data-template-style="true" rel="stylesheet">
+    <link href="/include/static/style.css?162974974251776" type="text/css" data-template-style="true" rel="stylesheet">
+    <title>Корзина</title>
+    <div th:insert="fragments/bg" ></div>
+<body>
+<div th:insert="fragments/header :: header" ></div>
+    <div style="display: flex">
+        <div style="margin-left: 100px"></div>
+        <div style="flex-grow: 7">
+            <div class="container">
+                <div th:each="el : ${allChart}">
+                    <div th:if="${el.count > 0}">
+                        <div class="bg-light p-1 rounded mt-3">
+                            <div style="display: flex">
+                                <div style="margin: 10px">
+                                    <img th:src="${el.getTovar().imageTovar.getUrl()}" width="200">
+                                </div>
+                                <div>
+                                    <h4 th:text="${el.getTovar().name}"></h4>
+                                    <div class="lead" th:text="'Количество - '+${el.count}"></div>
+                                    <div class="lead" th:text="'Стоимость - '+${el.count * el.getTovar().cost}"></div>
+
+                                    <a class="btn btn-success" th:href="'/chart/'+${el.id}+'/add'" >+</a>
+                                    <a class="btn btn-warning" th:href="'/chart/'+${el.id}+'/sub'" >-</a>
+                                    <a class="btn btn-danger"  th:href="'/chart/'+${el.id}+'/del'">Удалить из корзины</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="flex-grow: 1">
+            <div class="col" style="margin: 16px">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">Оформить заказ</h4>
+                    </div>
+                    <div class="card-body">
+
+                        <div th:if="${total == 0}">
+                            <h1 class="card-title pricing-card-title" th:text="'В корзине нет товаров'"><small class="text-muted"></small></h1>
+                        </div>
+                        <div th:if="${total != 0}">
+                            <h1 class="card-title pricing-card-title" th:text="${total} +' руб'"></h1>
+                        </div>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li><div></div></li>
+                            <li>Отслеживание заказа по телефону</li>
+                            <li>Бесплатная доставка</li>
+                        </ul>
+                        <a type="button" class="btn btn-lg btn-block btn-primary" th:href="'/chart/buy'">Купить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div th:insert="fragments/footer" ></div>
+</body>
+</html>
